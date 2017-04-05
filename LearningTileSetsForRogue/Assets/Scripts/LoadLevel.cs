@@ -13,12 +13,14 @@ public class LoadLevel : MonoBehaviour {
     const string FOREGROUND = "Foreground";
     const string FOREGROUND_DETAIL = "Foreground Detail";
 
+    public TextAsset levelInfo;
+
     // Use this for initialization
     void Start()
     {
         XmlDocument xmlDoc = new XmlDocument();
-        TextAsset levelinfo;
-        levelinfo = Resources.Load("Levels/testLevel") as TextAsset;
+        //TextAsset levelinfo;
+        //levelinfo = Resources.Load("Levels/testLevel") as TextAsset;
 
         GameObject emptyObject = new GameObject();
 
