@@ -15,6 +15,9 @@ public class LoadLevel : MonoBehaviour {
 
     public TextAsset levelInfo;
 
+    public List<Tile_Object> tileObjects = new List<Tile_Object>();
+    public Dictionary<int, Tile_Object> tileDictionary;
+
     // Use this for initialization
     void Start()
     {
@@ -24,10 +27,36 @@ public class LoadLevel : MonoBehaviour {
 
         GameObject emptyObject = new GameObject();
 
-        xmlDoc.LoadXml(levelinfo.text);
+        xmlDoc.LoadXml(levelInfo.text);
 
-        string nameOfImage = xmlDoc.DocumentElement.ChildNodes[0].ChildNodes[0].Attributes["source"].InnerText;
+        //search for all special tiles
+        XmlNodeList specialTiles = xmlDoc.DocumentElement.GetElementsByTagName("tile");
 
+        //instantiate the dictionary
+        tileDictionary = new Dictionary<int, Tile_Object>();
+
+        foreach (XmlNode special in specialTiles)
+        {
+            string type = special.ChildNodes[0].ChildNodes[0].Attributes["value"].InnerText;
+            Debug.Log(type);
+            int tileID = int.Parse(special.Attributes["id"].InnerText);
+
+            switch(type)
+            {
+                case "door":
+                    Door doorObj = new Door();
+                    doorObj.canOpen = special.ChildNodes[1].Attributes["value"].InnerText == "true" ? true : false;
+                    doorObj.locked = special.ChildNodes[2].Attributes["value"].InnerText == "true" ? true : false;
+                    Tile_Object tileObj = new Tile_Object();
+                    tileObj.id = tileID;
+                    tileObj.type = "door";
+                    tileDictionary.Add(tileID, doorObj);
+                    break;
+                
+            }
+        }
+
+        string nameOfImage = xmlDoc.DocumentElement.ChildNodes[0].Attributes["name"].InnerText;
         //Debug.Log(nameOfImage);
 
         Sprite[] levelSprites = Resources.LoadAll<Sprite>(nameOfImage);
@@ -81,6 +110,20 @@ public class LoadLevel : MonoBehaviour {
                         tempRB.gravityScale = 0;
                         tempRB.simulated = false;
                         tempSprite.AddComponent<BoxCollider2D>();
+                    }
+
+                    //check if this tileID has any special properties
+                    if (tileDictionary.ContainsKey(theIndexofSprite))
+                    {
+                        Tile_Object specialObject = tileDictionary[theIndexofSprite];
+
+                        //determine what type of object we are working with
+                        if(specialObject.type == "door")
+                        {
+                            Door tempDoor = tempSprite.AddComponent<Door>();
+                            tempDoor.canOpen = ((Door)specialObject).canOpen;
+                            tempDoor.locked = ((Door)specialObject).locked;
+                        }
                     }
                 }
             }

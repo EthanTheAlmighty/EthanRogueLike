@@ -34,73 +34,73 @@ public class DilboMove : MonoBehaviour {
 
     void MoveChar()
     {
-        //if(Input.GetKeyDown(rk))
-        //{
-        //    anim.SetBool(P_LEFT, false);
-        //    left = false;
+        if (Input.GetKeyDown(rk))
+        {
+            anim.SetBool(P_LEFT, false);
+            left = false;
 
-        //    anim.SetBool(P_RIGHT, true);
-        //    right = true;
+            anim.SetBool(P_RIGHT, true);
+            right = true;
 
-        //    anim.SetBool(P_UP, false);
-        //    up = false;
+            anim.SetBool(P_UP, false);
+            up = false;
 
-        //    anim.SetBool(P_DOWN, false);
-        //    down = false;
+            anim.SetBool(P_DOWN, false);
+            down = false;
 
-        //    transform.Translate(Vector3.right * speed * Time.deltaTime);
-        //}
-        //if(Input.GetKeyDown(lk))
-        //{
-        //    anim.SetBool(P_LEFT, true);
-        //    left = true;
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+        }
+        if (Input.GetKeyDown(lk))
+        {
+            anim.SetBool(P_LEFT, true);
+            left = true;
 
-        //    anim.SetBool(P_RIGHT, false);
-        //    right = false;
+            anim.SetBool(P_RIGHT, false);
+            right = false;
 
-        //    anim.SetBool(P_UP, false);
-        //    up = false;
+            anim.SetBool(P_UP, false);
+            up = false;
 
-        //    anim.SetBool(P_DOWN, false);
-        //    down = false;
+            anim.SetBool(P_DOWN, false);
+            down = false;
 
-        //    transform.Translate(Vector3.left * speed * Time.deltaTime);
-        //}
-        //if(Input.GetKeyDown(uk))
-        //{
-        //    anim.SetBool(P_LEFT, false);
-        //    left = false;
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
+        if (Input.GetKeyDown(uk))
+        {
+            anim.SetBool(P_LEFT, false);
+            left = false;
 
-        //    anim.SetBool(P_RIGHT, false);
-        //    right = false;
+            anim.SetBool(P_RIGHT, false);
+            right = false;
 
-        //    anim.SetBool(P_UP, true);
-        //    up = true;
+            anim.SetBool(P_UP, true);
+            up = true;
 
-        //    anim.SetBool(P_DOWN, false);
-        //    down = false;
+            anim.SetBool(P_DOWN, false);
+            down = false;
 
-        //    transform.Translate(Vector3.up * speed * Time.deltaTime);
-        //}
-        //if(Input.GetKeyDown(dk))
-        //{
-        //    anim.SetBool(P_LEFT, false);
-        //    left = false;
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+        }
+        if (Input.GetKeyDown(dk))
+        {
+            anim.SetBool(P_LEFT, false);
+            left = false;
 
-        //    anim.SetBool(P_RIGHT, false);
-        //    right = false;
+            anim.SetBool(P_RIGHT, false);
+            right = false;
 
-        //    anim.SetBool(P_UP, false);
-        //    up = false;
+            anim.SetBool(P_UP, false);
+            up = false;
 
-        //    anim.SetBool(P_DOWN, true);
-        //    down = true;
+            anim.SetBool(P_DOWN, true);
+            down = true;
 
-        //    transform.Translate(Vector3.down * speed * Time.deltaTime);
-        //}
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
+        }
 
         //continue moving if applicapble
-        if(right)
+        if (right)
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         if(left)
             transform.Translate(Vector3.left * speed * Time.deltaTime);
